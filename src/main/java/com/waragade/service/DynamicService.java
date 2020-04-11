@@ -70,7 +70,7 @@ public class DynamicService {
 			clientResponse = ThirdPartyClient.getInstance().getTrend();
 
 		} catch (Exception e) {
-			System.out.println("Exception : State client failed to retrieve data");
+			System.out.println("Exception : India client failed to retrieve data");
 			return null;
 		}
 
@@ -98,7 +98,7 @@ public class DynamicService {
 	public String indiaService() {
 
 		List<JSONObject> jsonList = mapTrend();
-		if (!jsonList.isEmpty()) {
+		if (jsonList != null && !jsonList.isEmpty()) {
 			String cases = "0";
 			if (jsonList != null && !jsonList.isEmpty()) {
 				JSONObject india = jsonList.get(jsonList.size() - 1);
@@ -117,7 +117,15 @@ public class DynamicService {
 
 	public String globalService() {
 
-		String response1 = ThirdPartyClient.getInstance().getGlobal();
+		String response1 = null;
+
+		try {
+			response1 = ThirdPartyClient.getInstance().getGlobal();
+
+		} catch (Exception e) {
+			System.out.println("Exception : Global client failed to retrieve data");
+			return null;
+		}
 		if (response1 != null) {
 			JSONObject responseJson1 = new JSONObject(response1);
 

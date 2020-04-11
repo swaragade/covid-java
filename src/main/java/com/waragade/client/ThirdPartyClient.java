@@ -6,7 +6,7 @@ import javax.ws.rs.core.MediaType;
 
 public class ThirdPartyClient {
 
-	private static final String URL_TREND = "https://api..covid19api.com/country/india/status/confirmed";
+	private static final String URL_TREND = "https://api.covid19api.com/country/india/status/confirmed";
 
 	private static final String URL_GLOBAL = "https://api.thevirustracker.com/free-api?global=stats";
 
