@@ -30,35 +30,39 @@ public class DynamicService {
 				return null;
 			}
 			if (clientResponse != null) {
-				JSONObject stateJson = new JSONObject(clientResponse);
-				String stateString = stateJson.get(stateName).toString();
+				try {
+					JSONObject stateJson = new JSONObject(clientResponse);
+					String stateString = stateJson.get(stateName).toString();
 
-				JSONObject distJson = new JSONObject(stateString);
-				String distString = distJson.get("districtData").toString();
+					JSONObject distJson = new JSONObject(stateString);
+					String distString = distJson.get("districtData").toString();
 
-				JSONObject subDistJson = new JSONObject(distString);
+					JSONObject subDistJson = new JSONObject(distString);
 
-				Integer sum = 0;
-				for (String district : subDistJson.keySet()) {
+					Integer sum = 0;
+					for (String district : subDistJson.keySet()) {
 
-					String subDistString = subDistJson.get(district).toString();
-					JSONObject confirmJson = new JSONObject(subDistString);
-					String confirmString = confirmJson.get("confirmed").toString();
+						String subDistString = subDistJson.get(district).toString();
+						JSONObject confirmJson = new JSONObject(subDistString);
+						String confirmString = confirmJson.get("confirmed").toString();
 
-					if ((confirmString != null || confirmString != "")) {
-						Integer cases = Integer.parseInt(confirmString);
-						sbDist.append("\n" + district + " : " + cases);
+						if ((confirmString != null || confirmString != "")) {
+							Integer cases = Integer.parseInt(confirmString);
+							sbDist.append("\n" + district + " : " + cases);
+						}
+						sum += Integer.parseInt(confirmString);
 					}
-					sum += Integer.parseInt(confirmString);
-				}
-				System.out.println("sum = " + sum);
+					System.out.println("sum = " + sum);
 
-				sbState.append("🇮🇳 *");
-				sbState.append(stateName + "* : " + sum);
-				if (sbDist.length() > 0) {
-					sbState.append(sbDist);
+					sbState.append("🇮🇳 *");
+					sbState.append(stateName + "* : " + sum);
+					if (sbDist.length() > 0) {
+						sbState.append(sbDist);
+					}
+					return sbState.toString();
+				} catch (Exception e) {
+					return StaticService.getInstance().stateListService();
 				}
-				return sbState.toString();
 			}
 		}
 		return StaticService.getInstance().stateListService();
