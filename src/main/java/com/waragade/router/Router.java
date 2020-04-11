@@ -27,18 +27,12 @@ public class Router {
 
 			if (msgCount == 1) {
 				String message = messageArray[0];
-				if (message.equalsIgnoreCase("hi") || message.equalsIgnoreCase("hey") || message.equalsIgnoreCase("hey")
-						|| message.equalsIgnoreCase("hii") || message.equalsIgnoreCase("hie")
-						|| message.equalsIgnoreCase("hei") || message.equalsIgnoreCase("heyy")
-						|| message.equalsIgnoreCase("heee")) {
-
-					return returnString;
-
-				} else if (message.equalsIgnoreCase("help")) {
+				
+				if (message.equalsIgnoreCase("help")) {
 					// return response for help
 					return StaticService.getInstance().helpService();
 
-				} else if (message.equalsIgnoreCase("symptomps")) {
+				} else if (message.equalsIgnoreCase("symptoms")) {
 					// return response for sym
 					return StaticService.getInstance().symptompsService();
 
@@ -51,7 +45,7 @@ public class Router {
 					}
 					
 					return returnString;
-				} else if (message.equalsIgnoreCase("global") || message.equalsIgnoreCase("world")) {
+				} else if (message.equalsIgnoreCase("global") || message.equalsIgnoreCase("world") || message.equalsIgnoreCase("globe")) {
 
 					String temp = dynamicService.globalService();
 					if (temp != null) {

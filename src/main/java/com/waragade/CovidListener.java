@@ -3,6 +3,7 @@ package com.waragade;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
+import com.google.common.eventbus.Subscribe;
 import com.twilio.Twilio;
 import com.twilio.twiml.MessagingResponse;
 import com.twilio.twiml.messaging.Body;
@@ -24,13 +25,19 @@ public class CovidListener {
 		get("/", (req, res) -> "Hello Web");
 		post("/sms", (req, res) -> {
 
-			System.out.println("From =>" + req.body().toString().split("&From"));
+			
+			
 
 			String returnString = Utility.getInstance().defaultMessage();
 
 			if (req.body() != null) {
 				String input = req.body().toString().trim();
-
+				
+				if (input.contains("&From") && input.contains("&ApiVersion")) {
+					System.out.println("From =>" + input.substring(input.indexOf("&From"), input.indexOf("&ApiVersion")));
+					
+				}
+				
 				int startIdx = 0;
 				int endIdx = 0;
 				String wholeMessage = null;
