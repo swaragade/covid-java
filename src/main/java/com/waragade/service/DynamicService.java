@@ -61,7 +61,7 @@ public class DynamicService {
 				return sbState.toString();
 			}
 		}
-		return null;
+		return StaticService.getInstance().stateListService();
 	}
 
 	private List<JSONObject> mapTrend() {

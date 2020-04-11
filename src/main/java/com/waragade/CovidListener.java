@@ -12,8 +12,8 @@ import com.waragade.util.Utility;
 
 public class CovidListener {
 
-	private final static String ACCOUNT_SID = "ACbc4a604fbfde78726d7acbddfa7fb467";
-	private final static String AUTH_ID = "35d58b6a2a56d378e7709688858c5056";
+	private final static String ACCOUNT_SID = System.getenv("ACCOUNT_SID");
+	private final static String AUTH_ID = System.getenv("AUTH_ID");
 
 	static {
 		Twilio.init(ACCOUNT_SID, AUTH_ID);
