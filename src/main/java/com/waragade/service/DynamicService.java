@@ -85,7 +85,7 @@ public class DynamicService {
 			listFromJackson = mapper.readValue(clientResponse, new TypeReference<ArrayList<Trend>>() {
 			});
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			return null;
 		}
 
 		List<JSONObject> jsonList = new ArrayList<>();
@@ -133,8 +133,6 @@ public class DynamicService {
 		if (response1 != null) {
 			JSONObject responseJson1 = new JSONObject(response1);
 
-			System.out.println(responseJson1.get("Global result :-").toString());
-
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			List<Global> listFromJackson = null;
@@ -143,7 +141,7 @@ public class DynamicService {
 						new TypeReference<ArrayList<Global>>() {
 						});
 			} catch (JsonProcessingException e) {
-				e.printStackTrace();
+				return null;
 			}
 
 			StringBuilder sb = new StringBuilder();
