@@ -24,7 +24,7 @@ public class CovidListener {
 		get("/", (req, res) -> "Hello Web");
 		post("/sms", (req, res) -> {
 
-			System.out.println("incoming body " + req.body().toString());
+			System.out.println("From =>" + req.body().toString().split("&From"));
 
 			String returnString = Utility.getInstance().defaultMessage();
 
@@ -42,6 +42,7 @@ public class CovidListener {
 
 					if (startIdx != 0 && endIdx != 0) {
 						wholeMessage = input.substring(startIdx, endIdx);
+						System.out.println("Input :=> "+wholeMessage);
 						messageArray = wholeMessage.trim().split("\\+");
 						
 						returnString = Router.getInstance().route(messageArray);
