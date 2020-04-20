@@ -1,1 +1,1 @@
-java: java --port 4567 -jar target/covid-bot-jar-with-dependencies.jar 
+web: java -jar target/covid-bot-jar-with-dependencies.jar --port 4567
