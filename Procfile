@@ -1,1 +1,1 @@
-web: mvn package && java --port 4567 -jar target/covid-bot-jar-with-dependencies.jar 
+web: java --port 4567 -jar target/covid-bot-jar-with-dependencies.jar 
